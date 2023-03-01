@@ -6,7 +6,7 @@ import {
   AddAccount
 } from './sign-up-protocols'
 import { MissingParamError, InvalidParamError } from '../../errors'
-import { badRequest, serverError } from '../../helpers/http-helper'
+import { badRequest, serverError, ok } from '../../helpers/http-helper'
 
 export class SignUpController implements Controller {
   private readonly emailValidator: EmailValidator
@@ -38,7 +38,7 @@ export class SignUpController implements Controller {
         return badRequest(new InvalidParamError('email'))
       }
       const account = this.addAccount.add({ email, password, name })
-      return { statusCode: 200, body: account }
+      return ok(account)
     } catch (error) {
       return serverError()
     }
