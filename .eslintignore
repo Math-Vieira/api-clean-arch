@@ -3,3 +3,4 @@ dist
 .env
 .husky/
 jest.config.js
+coverage
